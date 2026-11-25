@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>audvis — Free Online Audio Visualizer &amp; Soundwave Video Generator</title>
+  <meta name="description" content="audvis is a free, local-first browser audio visualizer and soundwave generator with 18 styles, live mic and demo synth modes, and transparent WebM or MP4 video export." />
+  <meta name="keywords" content="audvis, audio visualizer, soundwave generator, music visualizer online, waveform video maker, transparent webm audio visualizer, mp4 audio visualizer, web audio api" />
+  <meta name="author" content="NonLaHu" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <meta name="theme-color" content="#0c0d10" />
+  <link rel="canonical" href="https://nonlahu.github.io/audvis/" />
+  <link rel="manifest" href="./manifest.json" />
+  <link rel="icon" type="image/svg+xml" href="./assets/audvis-icon.svg" />
+  <link rel="apple-touch-icon" href="./assets/audvis-icon.svg" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="audvis" />
+  <meta property="og:url" content="https://nonlahu.github.io/audvis/" />
+  <meta property="og:title" content="audvis — Free Online Audio Visualizer &amp; Soundwave Video Generator" />
+  <meta property="og:description" content="Create audio visualizers from MP3, WAV, live microphone, or built-in synth with 18 reactive engines and export transparent WebM or MP4 videos locally in your browser." />
+  <meta property="og:image" content="https://nonlahu.github.io/audvis/assets/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="audvis browser audio visualizer and soundwave studio" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="audvis — Free Online Audio Visualizer &amp; Soundwave Video Generator" />
+  <meta name="twitter:description" content="18 browser-native audio visualizers, real-time Web Audio DSP controls, and transparent WebM / MP4 video export with zero uploads." />
+  <meta name="twitter:image" content="https://nonlahu.github.io/audvis/assets/og-image.png" />
+  <meta name="twitter:image:alt" content="audvis browser audio visualizer and soundwave studio" />
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebApplication",
+          "name": "audvis",
+          "alternateName": "audvis Audio Visualizer Studio",
+          "url": "https://nonlahu.github.io/audvis/",
+          "applicationCategory": "MultimediaApplication",
+          "operatingSystem": "Any",
+          "browserRequirements": "Requires JavaScript, HTML5 Canvas, and Web Audio API",
+          "isAccessibleForFree": true,
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+          },
+          "description": "Local-first online audio visualizer and soundwave video generator with 18 reactive styles, live microphone support, and transparent WebM or MP4 video export.",
+          "featureList": [
+            "18 audio visualizer engines including Frequency Bars, Mirror Bars, Spectrogram, Radial Bars, Polar Wave, Neon Rings, Vinyl Record, Cyber Grid, Audio Helix, and Particle Vortex",
+            "100% client-side Web Audio API analysis with no file uploads",
+            "Transparent WebM (VP9) and MP4 video export up to 3x resolution at 60 fps",
+            "Built-in 118 BPM Demo Synth and live microphone visualization",
+            "Custom center artwork for radial and vinyl visualizers"
+          ],
+          "author": {
+            "@type": "Person",
+            "name": "NonLaHu",
+            "url": "https://github.com/NonLaHu"
+          }
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Does audvis upload my audio files to a server?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "No. audvis runs entirely locally inside your browser using the Web Audio API and HTML5 Canvas, so your audio files and recordings never leave your device."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Can I export an audio visualizer with a transparent background?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. Set Stage Background to Transparent and Export Format to WebM (VP9) to render a video with an alpha channel for compositing in video editors."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What audio visualizer styles does audvis include?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "audvis includes 18 visualizers: Frequency Bars, Mirror Bars, Spectrogram, Filled Wave, Oscilloscope, Siri Ribbons, Mountain Ridge, Aurora Curtains, Radial Bars, Polar Wave, Neon Rings, Organic Blob, Vinyl Record, Hexagon Grid, Cyber Grid, Audio Helix, Particle Vortex, and Dot to Dot."
+              }
+            }
+          ]
+        }
+      ]
+    }
+  </script>
+
+  <link rel="stylesheet" href="./css/audvis.css" />
+</head>
+<body>
+  <div class="audvis-shell">
+    <h1 class="sr-only">audvis — Free Online Audio Visualizer &amp; Soundwave Video Generator</h1>
+
+    <!-- 1. Studio Topbar -->
+    <header class="topbar">
+      <div class="brand-group">
+        <a href="./index.html" class="brand-logo" aria-label="audvis home">
+          <img src="./assets/audvis-icon.svg" alt="audvis emblem" />
+          <span class="brand-name">audvis</span>
+          <span class="brand-tag">Studio</span>
+        </a>
+
+        <div id="trackPill" class="track-pill" title="Active audio source">
+          <span class="track-pill-dot" aria-hidden="true"></span>
+          <span id="trackPillText" class="track-pill-text">Idle Preview • No Track</span>
+        </div>
+      </div>
+
+      <div class="topbar-actions">
+        <input type="file" id="audioInput" accept="audio/*" hidden />
+        <button id="openAudioBtn" type="button" class="btn">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+          <span>Open Audio</span>
+        </button>
+
+        <button id="demoBtn" type="button" class="btn" title="Play built-in 118 BPM synth">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+          <span>Demo Synth</span>
+        </button>
+
+        <button id="micBtn" type="button" class="btn" title="Visualize live microphone input">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+          <span>Mic</span>
+        </button>
+
+        <div class="aspect-switcher" role="group" aria-label="Stage aspect ratio">
+          <button type="button" class="aspect-btn active" data-aspect="auto">Auto</button>
+          <button type="button" class="aspect-btn" data-aspect="16-9">16:9</button>
+          <button type="button" class="aspect-btn" data-aspect="9-16">9:16</button>
+          <button type="button" class="aspect-btn" data-aspect="1-1">1:1</button>
+        </div>
+
+        <button id="quickExportBtn" type="button" class="btn btn-primary" disabled>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 20h14"/></svg>
+          <span>Export</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="audvis-main">
+    <!-- 2. Hero Canvas Stage -->
+    <section class="stage-section" aria-label="Visualizer Stage">
+      <div id="stageViewport" class="stage-viewport checkerboard">
+        <canvas id="visualizer"></canvas>
+
+        <div id="stageHud" class="stage-hud">
+          <div class="stage-hud-row">
+            <div class="hud-pill">
+              <strong id="hudModeName">Frequency Bars</strong>
+              <span>•</span>
+              <span id="hudFftBadge" class="hud-mono">FFT 512</span>
+            </div>
+
+            <div style="display:flex;gap:6px;">
+              <button id="hudToggleBtn" type="button" class="hud-btn">Dim HUD</button>
+              <button id="fullscreenBtn" type="button" class="hud-btn">Fullscreen</button>
+            </div>
+          </div>
+
+          <div id="stageEmptyBanner" class="stage-empty-banner">
+            Drop an audio file anywhere, try <strong>Demo Synth</strong>, or toggle <strong>Mic</strong>
+          </div>
+        </div>
+
+        <div id="dropOverlay" class="drop-overlay">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+          <span>Drop audio file to load into audvis</span>
+        </div>
+
+        <div id="exportOverlay" class="export-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="exportTitle">
+          <div class="export-modal">
+            <h3 id="exportTitle">Exporting WebM…</h3>
+            <div id="exportProgress" class="export-progress-text">Preparing…</div>
+            <div class="export-bar-track">
+              <div id="exportProgressBar" class="export-bar-fill"></div>
+            </div>
+            <p style="font-size:12px;color:var(--text-muted);margin:0;">
+              Video renders in real time locally in your browser. Keep this tab active until download starts.
+            </p>
+            <div class="export-modal-actions">
+              <button id="exportStopSaveBtn" type="button" class="btn btn-primary hidden">Stop &amp; Save</button>
+              <button id="exportCancelBtn" type="button" class="btn btn-danger">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Transport & Interactive Scrubber Deck -->
+    <section class="transport-deck" aria-label="Playback Transport">
+      <div class="transport-buttons">
+        <button id="playButton" type="button" class="btn btn-play" disabled>
+          <svg id="playIcon" width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+          <span id="playButtonLabel">Play</span>
+        </button>
+
+        <button id="stopButton" type="button" class="btn btn-danger" disabled>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 6h12v12H6z"/></svg>
+          <span>Stop</span>
+        </button>
+
+        <button id="back5Btn" type="button" class="btn btn-icon" title="Rewind 5 seconds" disabled>-5s</button>
+        <button id="fwd5Btn" type="button" class="btn btn-icon" title="Forward 5 seconds" disabled>+5s</button>
+      </div>
+
+      <div class="timeline-area">
+        <div class="timeline-meta">
+          <div class="time-readout">
+            <span id="timeCurrent">0:00</span>
+            <span class="time-sep">/</span>
+            <span id="timeRemaining">-0:00</span>
+          </div>
+          <div id="status" class="status-line">Load an audio file, Demo Synth, or Mic to begin.</div>
+        </div>
+        <div id="seekTrack" class="seek-track" title="Click or drag to seek">
+          <div id="progressBar" class="seek-fill"></div>
+        </div>
+      </div>
+
+      <div class="volume-area">
+        <button id="muteBtn" type="button" class="btn btn-icon">Mute</button>
+        <input id="volumeSlider" type="range" min="0" max="1" step="0.01" value="0.9" class="volume-slider" aria-label="Volume" />
+      </div>
+    </section>
+
+    <!-- 4. Visual Mode Strip (18 Visualizers) -->
+    <section class="mode-strip" aria-label="Visualizer Styles">
+      <div class="mode-strip-header">
+        <span class="section-label">Visual Engines (18)</span>
+        <div id="categoryTabs" class="category-tabs" role="tablist" aria-label="Filter visualizer categories">
+          <button type="button" class="cat-tab active" data-cat="all">All (18)</button>
+          <button type="button" class="cat-tab" data-cat="bars">Bars</button>
+          <button type="button" class="cat-tab" data-cat="waves">Waves</button>
+          <button type="button" class="cat-tab" data-cat="radial">Radial</button>
+          <button type="button" class="cat-tab" data-cat="geometric">Geometric</button>
+          <button type="button" class="cat-tab" data-cat="cosmic">Cosmic</button>
+        </div>
+      </div>
+
+      <div id="presetGrid" class="preset-grid"></div>
+    </section>
+
+    <!-- 5. Three-Column Modular Inspector -->
+    <section class="inspector-grid" aria-label="Studio Controls">
+
+      <!-- Module 1: Audio & Geometry -->
+      <div class="inspector-card">
+        <div class="inspector-head">
+          <h2 class="inspector-title">Audio &amp; Geometry</h2>
+          <span class="inspector-sub">DSP / Shape</span>
+        </div>
+
+        <div class="control-group">
+          <div class="control-row">
+            <label for="sensitivity" class="control-label">Sensitivity</label>
+            <span id="sensitivityVal" class="kbd-val">1.4×</span>
+          </div>
+          <input id="sensitivity" type="range" min="0.2" max="3" step="0.1" value="1.4" />
+        </div>
+
+        <div class="control-group">
+          <div class="control-row">
+            <label for="smoothing" class="control-label">Smoothing</label>
+            <span id="smoothingVal" class="kbd-val">0.80</span>
+          </div>
+          <input id="smoothing" type="range" min="0" max="0.95" step="0.05" value="0.8" />
+        </div>
+
+        <div class="control-group">
+          <div class="control-row">
+            <label for="fftSize" class="control-label">FFT Detail</label>
+            <span id="fftSizeVal" class="kbd-val">512</span>
+          </div>
+          <input id="fftSize" type="range" min="5" max="12" step="1" value="9" />
+        </div>
+
+        <div id="barWidthContainer" class="control-group">
+          <div class="control-row">
+            <label for="barWidth" class="control-label">Bar Width</label>
+            <span id="barWidthVal" class="kbd-val">6</span>
+          </div>
+          <input id="barWidth" type="range" min="1" max="24" step="1" value="6" />
+        </div>
+
+        <div id="gapContainer" class="control-group">
+          <div class="control-row">
+            <label for="gapWidth" class="control-label">Gap</label>
+            <span id="gapWidthVal" class="kbd-val">2</span>
+          </div>
+          <input id="gapWidth" type="range" min="0" max="14" step="1" value="2" />
+        </div>
+
+        <div id="radialLengthContainer" class="control-group hidden">
+          <div class="control-row">
+            <label for="radialLength" class="control-label">Radial Scale</label>
+            <span id="radialLengthVal" class="kbd-val">1.0×</span>
+          </div>
+          <input id="radialLength" type="range" min="0.5" max="3" step="0.1" value="1.0" />
+        </div>
+
+        <div id="smartTip" class="tip-box hidden"></div>
+      </div>
+
+      <!-- Module 2: Appearance & Stage -->
+      <div class="inspector-card">
+        <div class="inspector-head">
+          <h2 class="inspector-title">Style &amp; Stage</h2>
+          <span class="inspector-sub">Color / Backdrop</span>
+        </div>
+
+        <div class="control-group">
+          <label for="colorMode" class="control-label">Color Palette</label>
+          <select id="colorMode" class="select-input">
+            <option value="cyber">Cyber Cyan (Gradient)</option>
+            <option value="sunset">Neon Sunset (Gradient)</option>
+            <option value="emerald">Emerald Pulse (Gradient)</option>
+            <option value="prism">Prism Rainbow</option>
+            <option value="rosegold">Rose Gold</option>
+            <option value="duotone">Custom Duotone (Primary + Secondary)</option>
+            <option value="solid">Solid Primary Color</option>
+          </select>
+        </div>
+
+        <div class="two-col">
+          <div class="control-group">
+            <label for="graphColor" class="control-label">Primary Color</label>
+            <input type="color" id="graphColor" value="#38bdf8" class="color-input" />
+          </div>
+          <div id="secondaryColorWrap" class="control-group">
+            <label for="secondaryColor" class="control-label">Secondary Color</label>
+            <input type="color" id="secondaryColor" value="#f472b6" class="color-input" />
+          </div>
+        </div>
+
+        <div class="control-group">
+          <div class="control-row">
+            <label for="glowSlider" class="control-label">Glow / Bloom</label>
+            <span id="glowVal" class="kbd-val">45%</span>
+          </div>
+          <input id="glowSlider" type="range" min="0" max="100" step="5" value="45" />
+        </div>
+
+        <div class="two-col">
+          <div class="control-group">
+            <label for="bgMode" class="control-label">Stage Background</label>
+            <select id="bgMode" class="select-input">
+              <option value="transparent">Transparent</option>
+              <option value="dark">Obsidian Dark</option>
+              <option value="light">Studio Light</option>
+              <option value="custom">Custom Color</option>
+            </select>
+          </div>
+          <div id="bgCustomColorContainer" class="control-group hidden">
+            <label for="bgCustomColor" class="control-label">Custom BG</label>
+            <input type="color" id="bgCustomColor" value="#0b0d12" class="color-input" />
+          </div>
+        </div>
+
+        <div id="radialImageContainer" class="control-group hidden">
+          <label class="control-label">Center Artwork (Radial / Vinyl Label)</label>
+          <div class="art-row">
+            <div class="file-btn-wrap">
+              <button type="button" class="btn" style="width:100%;">
+                <span id="centerImageLabel">Upload Center Art</span>
+              </button>
+              <input type="file" id="radialImage" accept="image/*" />
+            </div>
+            <button id="clearCenterImageBtn" type="button" class="btn btn-danger hidden">Clear</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Module 3: Video Export Studio -->
+      <div class="inspector-card">
+        <div class="inspector-head">
+          <h2 class="inspector-title">Video Export Studio</h2>
+          <span class="inspector-sub">WebM / MP4</span>
+        </div>
+
+        <div class="control-group">
+          <label for="exportFormat" class="control-label">Format</label>
+          <select id="exportFormat" class="select-input">
+            <option value="webm" selected>WebM (VP9 • Supports Transparency)</option>
+            <option value="mp4">MP4 (Best for Video Editors)</option>
+          </select>
+          <span id="exportFormatHint" style="font-size:11px;color:var(--text-muted);"></span>
+        </div>
+
+        <div class="two-col">
+          <div class="control-group">
+            <label for="exportScale" class="control-label">Resolution</label>
+            <select id="exportScale" class="select-input">
+              <option value="1">1× Preview</option>
+              <option value="1.5">1.5× HD</option>
+              <option value="2" selected>2× Crisp</option>
+              <option value="3">3× Ultra</option>
+            </select>
+          </div>
+
+          <div class="control-group">
+            <label for="exportFps" class="control-label">Frame Rate</label>
+            <select id="exportFps" class="select-input">
+              <option value="30">30 fps</option>
+              <option value="60" selected>60 fps</option>
+            </select>
+          </div>
+        </div>
+
+        <button id="exportButton" type="button" class="btn btn-primary" style="width:100%;padding:11px 14px;" disabled>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 20h14"/></svg>
+          <span id="exportButtonLabel">Export WEBM</span>
+        </button>
+
+        <div class="notes-box">
+          <strong style="color:var(--text-primary);">Local Render Notes</strong>
+          <ul>
+            <li>Audio and video are processed 100% locally in your browser — zero uploads.</li>
+            <li>WebM exports include an EBML duration fix for smooth timeline scrubbing.</li>
+            <li>For Demo Synth or Mic exports, click <strong>Stop &amp; Save</strong> anytime.</li>
+          </ul>
+        </div>
+      </div>
+
+    </section>
+    </main>
+
+    <!-- 6. Keyboard Shortcuts & Minimal Footer -->
+    <footer class="shortcuts-bar">
+      <div class="shortcuts-list">
+        <span><span class="kbd">Space</span> Play / Pause</span>
+        <span><span class="kbd">S</span> Stop</span>
+        <span><span class="kbd">←</span> / <span class="kbd">→</span> Seek 5s</span>
+        <span><span class="kbd">M</span> Mute</span>
+      </div>
+      <div>
+        <strong>audvis</strong> • Browser-native audio visualizer studio • 100% private &amp; offline-ready
+      </div>
+    </footer>
+
+  </div>
+
+  <noscript>
+    <p style="color:#eceef2;text-align:center;padding:24px;font-family:sans-serif;">
+      audvis requires JavaScript to analyze audio with the Web Audio API and render canvas visualizations.
+    </p>
+  </noscript>
+
+  <script defer src="./js/webm-duration.js"></script>
+  <script defer src="./js/audio-engine.js"></script>
+  <script defer src="./js/visualizers.js"></script>
+  <script defer src="./js/exporter.js"></script>
+  <script defer src="./js/app.js"></script>
+</body>
+</html>

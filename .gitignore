@@ -1,0 +1,16 @@
+# Local reference snapshot (third-party saved HTML / ad assets)
+Free Audio Visualizer*
+
+# OS & editor artifacts
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.vscode/
+.idea/
+
+# Logs & temp files
+*.log
+node_modules/
+.env
+.env.*
