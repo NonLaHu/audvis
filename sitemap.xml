@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://nonlahu.github.io/audvis/</loc>
+    <loc>https://audvis-ivory.vercel.app/</loc>
     <lastmod>2026-11-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://nonlahu.github.io/audvis/transparent-webm-visualizer.html</loc>
+    <loc>https://audvis-ivory.vercel.app/transparent-webm-visualizer.html</loc>
     <lastmod>2026-11-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://nonlahu.github.io/audvis/podcast-soundwave-generator.html</loc>
+    <loc>https://audvis-ivory.vercel.app/podcast-soundwave-generator.html</loc>
     <lastmod>2026-11-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://nonlahu.github.io/audvis/vinyl-music-visualizer.html</loc>
+    <loc>https://audvis-ivory.vercel.app/vinyl-music-visualizer.html</loc>
     <lastmod>2026-11-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://nonlahu.github.io/audvis/spectrogram-audio-visualizer.html</loc>
+    <loc>https://audvis-ivory.vercel.app/spectrogram-audio-visualizer.html</loc>
     <lastmod>2026-11-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>

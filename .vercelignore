@@ -1,0 +1,6 @@
+Free Audio Visualizer*
+.git
+.DS_Store
+Thumbs.db
+*.log
+node_modules

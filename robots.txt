@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://nonlahu.github.io/audvis/sitemap.xml
+Sitemap: https://audvis-ivory.vercel.app/sitemap.xml
