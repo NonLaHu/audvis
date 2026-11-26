@@ -1,11 +1,13 @@
 {
+  "id": "./",
   "name": "audvis — Audio Visualizer Studio",
   "short_name": "audvis",
   "description": "Local-first browser audio visualizer and soundwave video studio.",
   "start_url": "./index.html",
+  "scope": "./",
   "display": "standalone",
-  "background_color": "#0b0d12",
-  "theme_color": "#0b0d12",
+  "background_color": "#0c0d10",
+  "theme_color": "#0c0d10",
   "icons": [
     {
       "src": "./assets/audvis-icon.svg",

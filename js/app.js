@@ -718,8 +718,35 @@
     }
   });
 
+  function applyQueryParams() {
+    try {
+      const params = new URLSearchParams(global.location.search);
+      const style = params.get('style');
+      if (style && CATALOG.some((c) => c.id === style)) {
+        state.graphType = style;
+      }
+      const bg = params.get('bg');
+      if (bg && ['transparent', 'dark', 'light', 'custom'].includes(bg)) {
+        state.bgMode = bg;
+      }
+      const palette = params.get('palette');
+      if (palette && ['cyber', 'sunset', 'emerald', 'prism', 'rosegold', 'duotone', 'solid'].includes(palette)) {
+        state.colorMode = palette;
+      }
+      const aspect = params.get('aspect');
+      if (aspect && ['auto', '16-9', '9-16', '1-1'].includes(aspect)) {
+        state.aspect = aspect;
+      }
+      const format = params.get('format');
+      if (format && ['webm', 'mp4'].includes(format)) {
+        state.exportFormat = format;
+      }
+    } catch (_e) {}
+  }
+
   // Boot
   loadPrefs();
+  applyQueryParams();
   buildPresetGrid();
   syncControlsFromState();
   resizeCanvas();

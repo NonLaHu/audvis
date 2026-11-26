@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Transparent WebM Audio Visualizer — Alpha Overlay Video Export | audvis</title>
+  <meta name="description" content="Export transparent WebM (VP9) audio visualizer overlays directly in your browser. Zero uploads, 18 soundwave styles, and EBML duration fix for Premiere, DaVinci Resolve, and OBS." />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <meta name="theme-color" content="#0c0d10" />
+  <link rel="canonical" href="https://nonlahu.github.io/audvis/transparent-webm-visualizer.html" />
+  <link rel="icon" type="image/svg+xml" href="./assets/audvis-icon.svg" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="audvis" />
+  <meta property="og:url" content="https://nonlahu.github.io/audvis/transparent-webm-visualizer.html" />
+  <meta property="og:title" content="Transparent WebM Audio Visualizer — Alpha Overlay Export | audvis" />
+  <meta property="og:description" content="Render alpha-transparent VP9 WebM soundwave overlays up to 3x resolution locally in your browser." />
+  <meta property="og:image" content="https://nonlahu.github.io/audvis/assets/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Transparent WebM Audio Visualizer | audvis" />
+  <meta name="twitter:description" content="Export transparent WebM (VP9) audio visualizer overlays in your browser with zero uploads." />
+  <meta name="twitter:image" content="https://nonlahu.github.io/audvis/assets/og-image.png" />
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "audvis", "item": "https://nonlahu.github.io/audvis/" },
+        { "@type": "ListItem", "position": 2, "name": "Transparent WebM Visualizer", "item": "https://nonlahu.github.io/audvis/transparent-webm-visualizer.html" }
+      ]
+    }
+  </script>
+  <link rel="stylesheet" href="./css/audvis.css" />
+</head>
+<body>
+  <div class="audvis-shell">
+    <header class="topbar">
+      <div class="brand-group">
+        <a href="./index.html" class="brand-logo" aria-label="audvis home">
+          <img src="./assets/audvis-icon.svg" alt="audvis emblem" width="26" height="26" />
+          <span class="brand-name">audvis</span>
+          <span class="brand-tag">Guide</span>
+        </a>
+      </div>
+      <div class="topbar-actions">
+        <a href="./index.html?style=bar&bg=transparent&format=webm" class="btn btn-primary">Open in Studio</a>
+      </div>
+    </header>
+
+    <main class="guide-article">
+      <h1>Transparent WebM Audio Visualizer for Video Overlays</h1>
+      <p>
+        Need an animated soundwave or spectrum overlay you can drop straight onto B-roll, podcast footage, or a livestream scene? <strong>audvis</strong> exports alpha-transparent <strong>WebM (VP9)</strong> videos directly from an HTML5 Canvas without uploading your audio anywhere.
+      </p>
+
+      <h2>How to Export a Transparent Soundwave Overlay</h2>
+      <ol>
+        <li>Open your audio track (<code>MP3</code>, <code>WAV</code>, <code>AAC</code>, or <code>OGG</code>) or test with the built-in <strong>Demo Synth</strong>.</li>
+        <li>Under <strong>Style &amp; Stage</strong>, keep <strong>Stage Background</strong> set to <strong>Transparent</strong> (you will see the subtle checkerboard backdrop).</li>
+        <li>Pick any of the 18 visual engines — <em>Frequency Bars</em>, <em>Mirror Bars</em>, <em>Siri Ribbons</em>, <em>Radial Bars</em>, or <em>Polar Wave</em> work especially well for overlays.</li>
+        <li>Under <strong>Video Export Studio</strong>, choose <strong>WebM (VP9 • Supports Transparency)</strong>, set Resolution to <code>2× Crisp</code> or <code>3× Ultra</code>, and click <strong>Export WEBM</strong>.</li>
+      </ol>
+
+      <h2>Why audvis WebM Exports Scrub Cleanly</h2>
+      <p>
+        Standard browser <code>MediaRecorder</code> streams often omit duration metadata in the WebM container, making seeking broken in editors. audvis runs a client-side EBML metadata patcher (<code>fixWebmDuration</code>) before download so your exported file scrubs accurately in DaVinci Resolve, OBS, CapCut, and modern NLEs.
+      </p>
+
+      <div class="guide-cta-row">
+        <a href="./index.html?style=bar&bg=transparent&format=webm" class="btn btn-primary">Launch Transparent Bar Visualizer</a>
+        <a href="./index.html?style=siri&bg=transparent&format=webm" class="btn">Launch Transparent Siri Ribbons</a>
+        <a href="./index.html" class="btn">Back to Studio</a>
+      </div>
+    </main>
+
+    <footer class="shortcuts-bar">
+      <div><a href="./index.html" style="color:var(--text-primary);text-decoration:none;">audvis Studio</a> • <a href="./podcast-soundwave-generator.html" style="color:var(--text-secondary);">Podcast Soundwaves</a> • <a href="./vinyl-music-visualizer.html" style="color:var(--text-secondary);">Vinyl Visualizer</a> • <a href="./spectrogram-audio-visualizer.html" style="color:var(--text-secondary);">Spectrogram</a></div>
+      <div>100% client-side • No uploads</div>
+    </footer>
+  </div>
+</body>
+</html>

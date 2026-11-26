@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Online Spectrogram &amp; FFT Spectrum Analyzer | audvis</title>
+  <meta name="description" content="Visualize scrolling frequency spectrograms, FFT bars up to 4096 bins, and real-time oscilloscopes from audio files or your live microphone in your browser." />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <meta name="theme-color" content="#0c0d10" />
+  <link rel="canonical" href="https://nonlahu.github.io/audvis/spectrogram-audio-visualizer.html" />
+  <link rel="icon" type="image/svg+xml" href="./assets/audvis-icon.svg" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="audvis" />
+  <meta property="og:url" content="https://nonlahu.github.io/audvis/spectrogram-audio-visualizer.html" />
+  <meta property="og:title" content="Online Spectrogram &amp; FFT Spectrum Analyzer | audvis" />
+  <meta property="og:description" content="Real-time scrolling waterfall spectrogram, FFT detail up to 4096, and live microphone visualization." />
+  <meta property="og:image" content="https://nonlahu.github.io/audvis/assets/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Online Spectrogram &amp; FFT Analyzer | audvis" />
+  <meta name="twitter:description" content="Inspect live audio frequencies with scrolling spectrograms, oscilloscopes, and 4096 FFT detail." />
+  <meta name="twitter:image" content="https://nonlahu.github.io/audvis/assets/og-image.png" />
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "audvis", "item": "https://nonlahu.github.io/audvis/" },
+        { "@type": "ListItem", "position": 2, "name": "Spectrogram & FFT Analysis", "item": "https://nonlahu.github.io/audvis/spectrogram-audio-visualizer.html" }
+      ]
+    }
+  </script>
+  <link rel="stylesheet" href="./css/audvis.css" />
+</head>
+<body>
+  <div class="audvis-shell">
+    <header class="topbar">
+      <div class="brand-group">
+        <a href="./index.html" class="brand-logo" aria-label="audvis home">
+          <img src="./assets/audvis-icon.svg" alt="audvis emblem" width="26" height="26" />
+          <span class="brand-name">audvis</span>
+          <span class="brand-tag">Guide</span>
+        </a>
+      </div>
+      <div class="topbar-actions">
+        <a href="./index.html?style=waterfall&bg=dark" class="btn btn-primary">Open Spectrogram</a>
+      </div>
+    </header>
+
+    <main class="guide-article">
+      <h1>Online Spectrogram &amp; Real-Time FFT Audio Analyzer</h1>
+      <p>
+        Inspect harmonics, transients, and frequency balance over time with <strong>audvis</strong>. Switch between the scrolling <em>Spectrogram</em> waterfall, high-detail <em>Frequency Bars</em>, and time-domain <em>Oscilloscope</em> from any audio file or live <strong>Mic</strong> input.
+      </p>
+
+      <h2>DSP Controls for Frequency Inspection</h2>
+      <ul>
+        <li><strong>FFT Detail (32 – 4096)</strong>: Increase FFT size to resolve narrow bass harmonics and vocal formants.</li>
+        <li><strong>Smoothing (0.00 – 0.95)</strong>: Lower smoothing to <code>0.15</code>–<code>0.40</code> to catch sharp drum transients, or raise it for smooth visual averages.</li>
+        <li><strong>Live Mic Capture</strong>: Click <strong>Mic</strong> in the top bar to inspect instruments or room acoustics without speaker feedback.</li>
+      </ul>
+
+      <div class="guide-cta-row">
+        <a href="./index.html?style=waterfall&bg=dark" class="btn btn-primary">Launch Spectrogram</a>
+        <a href="./index.html?style=line&bg=dark" class="btn">Launch Oscilloscope</a>
+        <a href="./index.html" class="btn">Back to Studio</a>
+      </div>
+    </main>
+
+    <footer class="shortcuts-bar">
+      <div><a href="./index.html" style="color:var(--text-primary);text-decoration:none;">audvis Studio</a> • <a href="./transparent-webm-visualizer.html" style="color:var(--text-secondary);">Transparent WebM</a> • <a href="./podcast-soundwave-generator.html" style="color:var(--text-secondary);">Podcast Soundwaves</a> • <a href="./vinyl-music-visualizer.html" style="color:var(--text-secondary);">Vinyl Visualizer</a></div>
+      <div>100% client-side • No uploads</div>
+    </footer>
+  </div>
+</body>
+</html>

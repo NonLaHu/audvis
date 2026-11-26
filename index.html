@@ -16,6 +16,7 @@
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
+  <meta property="og:locale" content="en_US" />
   <meta property="og:site_name" content="audvis" />
   <meta property="og:url" content="https://nonlahu.github.io/audvis/" />
   <meta property="og:title" content="audvis — Free Online Audio Visualizer &amp; Soundwave Video Generator" />
@@ -73,7 +74,7 @@
               "name": "Does audvis upload my audio files to a server?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "No. audvis runs entirely locally inside your browser using the Web Audio API and HTML5 Canvas, so your audio files and recordings never leave your device."
+                "text": "No. audvis runs entirely locally inside your browser using the Web Audio API and HTML5 Canvas, so your audio files and microphone recordings never leave your device."
               }
             },
             {
@@ -81,7 +82,7 @@
               "name": "Can I export an audio visualizer with a transparent background?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "Yes. Set Stage Background to Transparent and Export Format to WebM (VP9) to render a video with an alpha channel for compositing in video editors."
+                "text": "Yes. Set Stage Background to Transparent and Export Format to WebM (VP9) to render a video with an alpha channel for video editor overlays."
               }
             },
             {
@@ -90,6 +91,14 @@
               "acceptedAnswer": {
                 "@type": "Answer",
                 "text": "audvis includes 18 visualizers: Frequency Bars, Mirror Bars, Spectrogram, Filled Wave, Oscilloscope, Siri Ribbons, Mountain Ridge, Aurora Curtains, Radial Bars, Polar Wave, Neon Rings, Organic Blob, Vinyl Record, Hexagon Grid, Cyber Grid, Audio Helix, Particle Vortex, and Dot to Dot."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Should I export WebM or MP4?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Choose WebM (VP9) when you need transparent backgrounds and smaller overlay files. Choose MP4 when importing directly into Premiere Pro, Final Cut Pro, or Safari (MP4 uses an opaque backdrop)."
               }
             }
           ]
@@ -102,13 +111,12 @@
 </head>
 <body>
   <div class="audvis-shell">
-    <h1 class="sr-only">audvis — Free Online Audio Visualizer &amp; Soundwave Video Generator</h1>
 
     <!-- 1. Studio Topbar -->
     <header class="topbar">
       <div class="brand-group">
         <a href="./index.html" class="brand-logo" aria-label="audvis home">
-          <img src="./assets/audvis-icon.svg" alt="audvis emblem" />
+          <img src="./assets/audvis-icon.svg" alt="audvis emblem" width="26" height="26" />
           <span class="brand-name">audvis</span>
           <span class="brand-tag">Studio</span>
         </a>
@@ -434,6 +442,58 @@
         </div>
       </div>
 
+    </section>
+
+    <!-- Below-the-fold Overview, Use-Case Guides & FAQ -->
+    <section class="seo-section" aria-label="About audvis and workflow guides">
+      <div class="seo-header">
+        <h1>audvis — Free Online Audio Visualizer &amp; Soundwave Video Generator</h1>
+        <p>
+          Create real-time music visualizers, podcast waveforms, and transparent video overlays directly in your browser using the Web Audio API and HTML5 Canvas. Export 1080p+ WebM or MP4 videos at 60 fps with zero uploads or watermarks.
+        </p>
+      </div>
+
+      <div class="seo-grid">
+        <a class="seo-card" href="./transparent-webm-visualizer.html">
+          <h3>Transparent WebM Overlays</h3>
+          <p>Render alpha-channel soundwaves over dark, bright, or live-action video timelines.</p>
+          <span class="seo-card-link">Read guide →</span>
+        </a>
+        <a class="seo-card" href="./podcast-soundwave-generator.html">
+          <h3>Podcast Soundwave Videos</h3>
+          <p>Export 16:9, 9:16 Reels/Shorts, or 1:1 square waveform clips for social feeds.</p>
+          <span class="seo-card-link">Read guide →</span>
+        </a>
+        <a class="seo-card" href="./vinyl-music-visualizer.html">
+          <h3>Vinyl &amp; Cover Art Visualizer</h3>
+          <p>Spinning turntable and radial bar modes with your own album art center label.</p>
+          <span class="seo-card-link">Read guide →</span>
+        </a>
+        <a class="seo-card" href="./spectrogram-audio-visualizer.html">
+          <h3>Spectrogram &amp; FFT Analysis</h3>
+          <p>Inspect frequency waterfalls, oscilloscopes, and live microphone harmonics up to 4096 FFT.</p>
+          <span class="seo-card-link">Read guide →</span>
+        </a>
+      </div>
+
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary>Does audvis upload my audio files to a server?</summary>
+          <p>No. audvis runs entirely locally inside your browser using the Web Audio API and HTML5 Canvas, so your audio files and microphone recordings never leave your device.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Can I export an audio visualizer with a transparent background?</summary>
+          <p>Yes. Set Stage Background to Transparent and Export Format to WebM (VP9) to render a video with an alpha channel for video editor overlays.</p>
+        </details>
+        <details class="faq-item">
+          <summary>What audio visualizer styles does audvis include?</summary>
+          <p>audvis includes 18 visualizers: Frequency Bars, Mirror Bars, Spectrogram, Filled Wave, Oscilloscope, Siri Ribbons, Mountain Ridge, Aurora Curtains, Radial Bars, Polar Wave, Neon Rings, Organic Blob, Vinyl Record, Hexagon Grid, Cyber Grid, Audio Helix, Particle Vortex, and Dot to Dot.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Should I export WebM or MP4?</summary>
+          <p>Choose WebM (VP9) when you need transparent backgrounds and smaller overlay files. Choose MP4 when importing directly into Premiere Pro, Final Cut Pro, or Safari (MP4 uses an opaque backdrop).</p>
+        </details>
+      </div>
     </section>
     </main>
 
