@@ -12,5 +12,6 @@ Thumbs.db
 # Logs & temp files
 *.log
 node_modules/
+.vercel
 .env
 .env.*
